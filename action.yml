@@ -1,0 +1,12 @@
+name: 'get-pr-commits'
+description: 'A GitHub Action that get commits in current pull-request'
+inputs:
+  token:
+    description: 'A token with access to your repository scoped in as a secret'
+    required: true
+outputs:
+  commits:
+    description: 'commits in pr'
+runs:
+  using: 'node12'
+  main: 'index.js'
