@@ -16,7 +16,7 @@ jobs:
     steps:
     - name: Get PR Commits
       id: 'get-pr-commits'
-      uses: Tim-Zhang/get-pr-commits@master
+      uses: tim-actions/get-pr-commits@master
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
