@@ -13,15 +13,26 @@ async function main() {
     }
 
     const token = core.getInput('token')
+    const filterOutPattern = core.getInput('filter_out_pattern')
+    const filterOutFlags = core.getInput('filter_out_flags')
     const octokit = new github.GitHub(token)
 
-    const commits = await octokit.pulls.listCommits({
+    const commitsListed = await octokit.pulls.listCommits({
       owner: repo.owner.login,
       repo: repo.name,
       pull_number: pr.number,
     })
 
-    core.setOutput('commits', JSON.stringify(commits.data))
+    let commits = commitsListed.data
+
+    if (filterOutPattern) {
+      const regex = new RegExp(filterOutPattern, filterOutFlags)
+      commits = commits.filter(({commit}) => {
+        return !regex.test(commit.message)
+      })
+    }
+
+    core.setOutput('commits', JSON.stringify(commits))
   } catch (error) {
     core.setFailed(error.message)
   }

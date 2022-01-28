@@ -4,6 +4,14 @@ inputs:
   token:
     description: 'A token with access to your repository scoped in as a secret'
     required: true
+  filter_out_pattern:
+    description: 'A regex pattern to check if a commit should be filtered out, empty for disable'
+    required: false
+    default: ""
+  filter_out_flags:
+    description: 'Regex flags of input filter_out_pattern'
+    required: false
+    default: ''
 outputs:
   commits:
     description: 'commits in pr'
