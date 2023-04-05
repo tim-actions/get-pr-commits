@@ -1,7 +1,7 @@
 const core = require('@actions/core')
 const github = require('@actions/github')
 
-const validEvent = ['pull_request']
+const validEvent = ['pull_request', 'merge_group']
 
 async function main() {
   try {
