@@ -33,6 +33,7 @@ async function main() {
     }
 
     core.setOutput('commits', JSON.stringify(commits))
+    core.setOutput('commit_count', commits.length)
   } catch (error) {
     core.setFailed(error.message)
   }
